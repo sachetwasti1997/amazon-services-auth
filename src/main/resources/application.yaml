@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: AUTH-SERVER
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_db
+    username: root
+    password: Wasti786@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#read
+read:
+  datasource:
+    url: jdbc:mysql://${AUTH_DB_URL_READ}:3306/user_db
+    username: root
+    password: Wasti786@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+SECURE_KEY: ${SECURE_KEY_STR:8Xc5HXT4fRYeGL5uLyNgaGg4vtMldmLhjtIvD2gLoK4=}
