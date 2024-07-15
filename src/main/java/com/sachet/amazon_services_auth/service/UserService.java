@@ -1,6 +1,7 @@
 package com.sachet.amazon_services_auth.service;
 
 import com.sachet.amazon_services_auth.model.Address;
+import com.sachet.amazon_services_auth.model.LoginRequest;
 import com.sachet.amazon_services_auth.model.User;
 import com.sachet.amazon_services_auth.repository.UserRepository;
 import org.slf4j.Logger;
@@ -34,6 +35,14 @@ public class UserService {
             return jwtService.generateToken(userRepository.save(user));
         }
         throw new Exception("User with that email already exists, please try a different email");
+    }
+
+    public String userLogin(LoginRequest request) throws Exception {
+        Optional<User> existingUser = userRepository.findByEmail(request.getEmail());
+        if (existingUser.isEmpty()) {
+            throw new Exception("User with that email already exists, please try a different email");
+        }
+        return jwtService.generateToken(existingUser.get());
     }
 
     public Address addAddress(Long userId, Address address) throws Exception {

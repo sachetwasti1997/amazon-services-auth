@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
+@Table(name = "user",
+        indexes = {@Index(name = "idx_name_email", columnList="email")})
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
